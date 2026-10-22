@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071426">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TapMaster">
+<title>TapMaster — Tap Lab</title>
+<style>
+:root{color-scheme:dark;--bg:#050b16;--panel:#0b192b;--panel2:#0a1424;--blue:#218cff;--cyan:#4de8ff;--muted:#91a8c3;--line:#183a5c;--white:#f3f8ff}
+*{box-sizing:border-box}html{min-height:100%;background:var(--bg)}body{margin:0;min-height:100vh;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--white);background:radial-gradient(ellipse at 90% 0%,#12345a 0,transparent 42%),radial-gradient(ellipse at 0% 50%,#071d36 0,transparent 45%),var(--bg);padding:env(safe-area-inset-top) 16px env(safe-area-inset-bottom)}
+button,input{font:inherit}button{cursor:pointer;touch-action:manipulation} .app{max-width:620px;margin:0 auto;padding:16px 0 28px}
+header{display:flex;align-items:center;gap:12px;margin:4px 2px 22px}.logo{width:49px;height:49px;border:1px solid #45dfff99;background:linear-gradient(145deg,#174a7c,#0b1c31);border-radius:15px;display:grid;place-items:center;box-shadow:0 0 28px #168bff25}.logo svg{width:26px;height:26px;stroke:var(--cyan);fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+.brand{font-size:20px;letter-spacing:2px;font-weight:950}.tagline{font:700 9px ui-monospace,monospace;letter-spacing:1.5px;color:var(--cyan);margin-top:4px}.ready{margin-left:auto;color:#6cf5b0;font:800 10px ui-monospace,monospace;display:flex;align-items:center;gap:6px}.dot{width:7px;height:7px;background:#6cf5b0;border-radius:50%;box-shadow:0 0 10px #6cf5b0}
+.card{background:linear-gradient(145deg,#0c1b2eeb,#071322f2);border:1px solid #1a4165;border-radius:19px;padding:18px;margin-bottom:14px;box-shadow:0 14px 35px #0002}
+.cardhead{display:flex;align-items:center;gap:8px;font:900 11px ui-monospace,monospace;letter-spacing:1px;color:#e9f6ff}.tag{margin-left:auto;padding:6px 9px;border-radius:99px;background:#142c44;color:#8cb3d5;font:800 9px ui-monospace,monospace}
+.rate{display:flex;align-items:baseline;gap:10px;margin:18px 0 8px}.rate strong{font-size:55px;line-height:1;font-weight:950;letter-spacing:-2px}.rate span{font:800 11px ui-monospace,monospace;color:var(--cyan)}.interval{font:11px ui-monospace,monospace;color:#88a1bd}.sub{font-size:12px;line-height:1.55;color:#9db1c8;margin:12px 0 0}
+input[type=range]{width:100%;accent-color:var(--cyan);margin:14px 0 6px}.scale{display:flex;justify-content:space-between;color:#7791ad;font:10px ui-monospace,monospace}.presets{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:16px}.preset{border:1px solid #244565;background:#102138;color:#b7cce0;border-radius:9px;padding:11px 2px;font:900 9px ui-monospace,monospace}.preset.active{background:linear-gradient(100deg,var(--cyan),#339dff);color:#06101c;border-color:var(--cyan)}
+.counterrow{display:flex;align-items:center;margin:20px 0 15px}.count strong{display:block;font-size:42px;font-weight:950;letter-spacing:-1px;font-variant-numeric:tabular-nums}.count span{font:800 9px ui-monospace,monospace;letter-spacing:1px;color:#7896b6}.orb{margin-left:auto;width:76px;height:76px;border:1px solid #2589cc66;border-radius:50%;display:grid;place-items:center;position:relative}.orb:before{content:"";position:absolute;inset:8px;border:1px solid #45e8ff99;border-radius:50%}.orb svg{width:25px;height:25px;stroke:var(--cyan);fill:none;stroke-width:1.8}.orb.running{animation:pulse 1s infinite alternate}@keyframes pulse{from{box-shadow:0 0 4px #4de8ff22}to{box-shadow:0 0 24px #4de8ff66}}
+.actions{display:grid;grid-template-columns:1fr 50px;gap:9px}.primary,.reset{border-radius:12px;min-height:48px;border:1px solid #44dfff99;font:950 11px ui-monospace,monospace;letter-spacing:.8px}.primary{background:linear-gradient(100deg,#4de8ff,#278aff);color:#04101c}.primary.stop{background:#401c2a;color:#ffb7c3;border-color:#a9415b}.reset{background:#13243a;color:#d7eaff;border-color:#27415e;font-size:17px}
+.notice{display:flex;gap:11px;background:#291e12a8;border:1px solid #8057227a;border-radius:15px;padding:15px;margin-bottom:14px}.notice .symbol{color:#ffd17d;font-size:18px}.notice strong{font:900 10px ui-monospace,monospace;letter-spacing:.8px}.notice p{font-size:12px;line-height:1.5;color:#c4b9a8;margin:7px 0 0}
+nav{position:sticky;bottom:calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:1fr 1fr;gap:7px;background:#030914eF;border:1px solid #173653;border-radius:99px;padding:7px;margin:16px 4px 0;backdrop-filter:blur(15px)}nav button{border:0;border-radius:99px;padding:13px 5px;background:transparent;color:#7894b3;font:900 10px ui-monospace,monospace;letter-spacing:.5px}nav button.active{color:#06101c;background:linear-gradient(100deg,var(--cyan),#398dff)}
+.page{display:none}.page.active{display:block}.access-title{font-size:20px;letter-spacing:.7px;margin:3px 0 8px;font-weight:950}.access-intro{color:#9db1c8;font-size:13px;line-height:1.55;margin:0 0 16px}.access-row{border:1px solid #1a4165;border-radius:16px;background:#0b192b;padding:15px;margin-bottom:12px}.access-row h3{font-size:15px;margin:0 0 7px}.access-row p{font-size:12px;line-height:1.5;color:#9db1c8;margin:0 0 10px}.path{font:10px ui-monospace,monospace;line-height:1.6;color:var(--cyan);background:#06101d;padding:10px;border-radius:9px}.fineprint{text-align:center;color:#617995;font-size:10px;line-height:1.6;padding:12px 10px 0}
+@media(min-width:520px){.app{padding-top:24px}.card{padding:22px}.rate strong{font-size:62px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 12V5.5a1.8 1.8 0 0 1 3.6 0V11"/><path d="M10.6 10V4.8a1.8 1.8 0 0 1 3.6 0V11"/><path d="M14.2 10V6.3a1.8 1.8 0 0 1 3.6 0v7.2c0 4.1-2.6 6.7-6.5 6.7h-.8c-2.4 0-3.7-1.4-4.8-3.2l-2-3.2a1.7 1.7 0 0 1 2.8-1.9L8 14"/></svg></div>
+  <div><div class="brand">TAPMASTER</div><div class="tagline">TACTICAL TAP COMPANION</div></div>
+  <div class="ready"><span class="dot"></span>READY</div>
+</header>
+
+<main id="lab" class="page active">
+  <section class="card">
+    <div class="cardhead">⌁ &nbsp; SIMULATION MODE <span class="tag">LOCAL ONLY</span></div>
+    <div class="rate"><strong id="rateNum">5</strong><span>TAPS / SEC</span></div>
+    <div class="interval" id="interval">200 ms interval</div>
+    <p class="sub">This rate is used only by the in-app demo counter. It does not click inside games.</p>
+  </section>
+  <section class="card">
+    <div class="cardhead">◉ &nbsp; TAP FREQUENCY</div>
+    <input id="speed" aria-label="Demo taps per second" type="range" min="1" max="20" value="5" step="1">
+    <div class="scale"><span>1 TPS · SLOW</span><span>20 TPS · FAST</span></div>
+    <div class="presets">
+      <button class="preset" data-speed="2">CHILL</button><button class="preset active" data-speed="5">NORMAL</button><button class="preset" data-speed="10">TURBO</button><button class="preset" data-speed="20">MAX</button>
+    </div>
+  </section>
+  <section class="card">
+    <div class="cardhead">◎ &nbsp; TAP LAB <span class="tag">DEMO</span></div>
+    <div class="counterrow"><div class="count"><strong id="count">0</strong><span>SIMULATED EVENTS</span></div><div id="orb" class="orb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 11V5a2 2 0 0 1 4 0v6"/><path d="M12 10V4a2 2 0 0 1 4 0v8"/><path d="M16 10V7a2 2 0 0 1 4 0v7c0 4-2.5 6-6 6h-1c-2 0-3.5-1-4.5-3L6 13a1.7 1.7 0 0 1 3-1l2 2"/></svg></div></div>
+    <div class="actions"><button id="toggle" class="primary">▶ &nbsp; START DEMO</button><button id="reset" class="reset" aria-label="Reset counter">↻</button></div>
+    <p id="runningNote" class="sub" hidden>● Counting simulated events in TapMaster…</p>
+  </section>
+  <section class="notice"><div class="symbol">ⓘ</div><div><strong>IMPORTANT: iOS LIMIT</strong><p>iPhone apps generally cannot send automatic taps into Roblox or another app. TapMaster's counter is a local simulation, not a game autoclicker.</p></div></section>
+</main>
+
+<main id="access" class="page">
+  <h1 class="access-title">ACCESSIBILITY TOOLKIT</h1>
+  <p class="access-intro">iOS includes built-in tools that can help with touch interactions. Setup and available features depend on your iOS version.</p>
+  <section class="access-row"><h3>☝ AssistiveTouch</h3><p>On-screen menu for supported gestures and custom actions.</p><div class="path">Settings → Accessibility → Touch → AssistiveTouch</div></section>
+  <section class="access-row"><h3>⇄ Switch Control</h3><p>Accessibility control using switches, scanning, and supported recipes.</p><div class="path">Settings → Accessibility → Switch Control</div></section>
+  <section class="access-row"><h3>✋ Touch Accommodations</h3><p>Adjust how the screen responds to touches and gestures.</p><div class="path">Settings → Accessibility → Touch → Touch Accommodations</div></section>
+  <section class="notice"><div class="symbol">ⓘ</div><div><strong>WHAT TAPMASTER CAN DO</strong><p>This web app cannot toggle system settings or inject touches into other apps. Built-in accessibility tools have their own capabilities and limitations.</p></div></section>
+</main>
+
+<nav aria-label="Main navigation"><button class="active" data-page="lab">◎ &nbsp; TAP LAB</button><button data-page="access">♧ &nbsp; ACCESSIBILITY</button></nav>
+<div class="fineprint">TAPMASTER WEB · DEMO COUNTS ARE SIMULATED · NO GAME INPUT</div>
+</div>
+<script>
+(() => {
+ const speed = document.getElementById('speed');
+ const rateNum = document.getElementById('rateNum');
+ const interval = document.getElementById('interval');
+ const countEl = document.getElementById('count');
+ const toggle = document.getElementById('toggle');
+ const reset = document.getElementById('reset');
+ const orb = document.getElementById('orb');
+ const runningNote = document.getElementById('runningNote');
+ let count = 0, running = false, timer = null;
+ function updateSpeed() {
+   const n = Number(speed.value);
+   rateNum.textContent = n;
+   interval.textContent = `${Math.round(1000/n)} ms interval`;
+   document.querySelectorAll('[data-speed]').forEach(b => b.classList.toggle('active', Number(b.dataset.speed) === n));
+   if (running) start();
+ }
+ function stop() {
+   running = false;
+   if (timer) clearInterval(timer);
+   timer = null;
+   toggle.classList.remove('stop');
+   toggle.textContent = '▶  START DEMO';
+   orb.classList.remove('running');
+   runningNote.hidden = true;
+ }
+ function start() {
+   if (timer) clearInterval(timer);
+   running = true;
+   toggle.classList.add('stop');
+   toggle.textContent = '■  STOP DEMO';
+   orb.classList.add('running');
+   runningNote.hidden = false;
+   timer = setInterval(() => {
+     count += 1;
+     countEl.textContent = count.toLocaleString();
+   }, 1000 / Number(speed.value));
+ }
+ speed.addEventListener('input', updateSpeed);
+ document.querySelectorAll('[data-speed]').forEach(b => b.addEventListener('click', () => { speed.value = b.dataset.speed; updateSpeed(); }));
+ toggle.addEventListener('click', () => running ? stop() : start());
+ reset.addEventListener('click', () => { stop(); count = 0; countEl.textContent = '0'; });
+ document.querySelectorAll('[data-page]').forEach(b => b.addEventListener('click', () => {
+   stop();
+   document.querySelectorAll('.page').forEach(p => p.classList.toggle('active', p.id === b.dataset.page));
+   document.querySelectorAll('nav button').forEach(n => n.classList.toggle('active', n === b));
+   window.scrollTo({top:0, behavior:'smooth'});
+ }));
+ document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+ updateSpeed();
+})();
+</script>
+</body>
+</html>
